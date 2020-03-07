@@ -31,6 +31,7 @@ type RTSPClientConnection struct {
 func newRTSPClientConnection(server *RTSPServer, socket net.Conn) *RTSPClientConnection {
 	localAddr := strings.Split(socket.LocalAddr().String(), ":")
 	remoteAddr := strings.Split(socket.RemoteAddr().String(), ":")
+	log.Info("[src=%s port=%s Connect.",remoteAddr[0],remoteAddr[1])
 	return &RTSPClientConnection{
 		server:     server,
 		socket:     socket,

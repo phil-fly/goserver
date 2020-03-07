@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"rtspserver/rtsp/rtspserver"
+	"goserver/rtsp/rtspserver"
 )
 
 func main() {

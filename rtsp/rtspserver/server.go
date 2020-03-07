@@ -12,7 +12,7 @@ import (
 	"sync"
 	"time"
 
-	"rtspserver/rtspserver/auth"
+	"github.com/phil-fly/goserver/rtsp/auth"
 	gs "github.com/phil-fly/goserver/rtsp/groupsock"
 	"github.com/phil-fly/goserver/rtsp/livemedia"
 	lg "github.com/phil-fly/goserver/rtsp/log"
