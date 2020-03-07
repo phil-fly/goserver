@@ -15,7 +15,7 @@ import (
 	"rtspserver/rtspserver/auth"
 	gs "github.com/phil-fly/goserver/rtsp/groupsock"
 	"github.com/phil-fly/goserver/rtsp/livemedia"
-	lg "github.com/djwackey/gitea/log"
+	lg "github.com/phil-fly/goserver/rtsp/log"
 )
 
 type RTSPServer struct {

@@ -9,7 +9,7 @@ import (
 	"github.com/phil-fly/goserver/rtsp/auth"
 	gs "github.com/phil-fly/goserver/rtsp/groupsock"
 	"github.com/phil-fly/goserver/rtsp/livemedia"
-	"github.com/djwackey/gitea/log"
+	"github.com/phil-fly/goserver/rtsp/log"
 )
 
 const rtspBufferSize = 10000

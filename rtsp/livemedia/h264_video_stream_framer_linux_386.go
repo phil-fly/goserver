@@ -4,7 +4,7 @@ import (
 	"errors"
 	sys "syscall"
 
-	"github.com/djwackey/gitea/log"
+	"github.com/phil-fly/goserver/rtsp/log"
 )
 
 const (
