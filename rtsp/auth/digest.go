@@ -8,6 +8,7 @@ import (
 	"strings"
         "regexp"
 	sys "syscall"
+	"github.com/phil-fly/goserver/rtsp/log"
 )
 
 var counter = 0
@@ -113,7 +114,7 @@ func ParseAuthorizationHeader(buf string) *AuthorizationHeader {
 		text :=r.FindAllStringSubmatch(buf, -1)
 		response = text[0][1]
 	}
-
+	log.Info("username=[%s],URI=[%s],Realm=[%s],Nonce=[%s],Response=[%s]",username,uri,realm,nonce,response)
 	return &AuthorizationHeader{
 		URI:      uri,
 		Realm:    realm,
