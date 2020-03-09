@@ -2,11 +2,21 @@ package main
 
 import (
 	"fmt"
-	"goserver/rtsp/rtspserver"
+	"github.com/phil-fly/goserver/rtsp/rtspserver"
+	"github.com/phil-fly/goserver/rtsp/log"
+	"github.com/phil-fly/goserver/rtsp/auth"
 )
 
 func main() {
-	server := rtspserver.New(nil)
+
+	mode := "console"
+
+	config := `{"level":0,"filename":"test.log"}`
+	log.NewLogger(0, mode, config)
+	//auth.AuthorizationHeader{}
+	authinfo := auth.NewAuthDatabase("pot_rtspserver")
+	authinfo.InsertUserRecord("admin","123456")
+	server := rtspserver.New(authinfo)
 
 	portNum := 8554
 	err := server.Listen("0.0.0.0",portNum)
