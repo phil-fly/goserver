@@ -91,6 +91,7 @@ func ParseAuthorizationHeader(buf string) *AuthorizationHeader {
 		if n1 != 2 && n2 != 1 {
 			break
 		}
+		fmt.Print("parameter ======",parameter,"            value =",value)
 		if strings.EqualFold(parameter, "username") {
 			username = value
 		} else if strings.EqualFold(parameter, "realm") {
