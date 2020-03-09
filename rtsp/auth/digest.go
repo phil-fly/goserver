@@ -76,7 +76,7 @@ func ParseAuthorizationHeader(buf string) *AuthorizationHeader {
 	}
 
 	// First, find "Authorization:"
-	index := strings.Index(buf, "Authorization: Digest ")
+	index := strings.Index(buf, "Authorization: Digest")
 	if -1 == index {
 		return nil
 	}
@@ -84,7 +84,7 @@ func ParseAuthorizationHeader(buf string) *AuthorizationHeader {
 	// Then, run through each of the fields, looking for ones we handle:
 	var n1, n2 int
 	var parameter, value, username, realm, nonce, uri, response string
-	fields := buf[index+22:]
+	fields := buf[index+len("Authorization: Digest"):]
 	for {
 		n1, _ = fmt.Sscanf(fields, "%[^=]=\"%[^\"]\"", &parameter, &value)
 		n2, _ = fmt.Sscanf(fields, "%[^=]=\"\"", &parameter)
