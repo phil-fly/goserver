@@ -57,8 +57,6 @@ func (s *RTSPServer) Listen(ipaddr string,portNum int) error {
 	s.rtspPort = portNum
 	s.serverAddr = ipaddr
 	var err error
-	authinfo := s.authDatabase
-	lg.Info("setpass = %s",authinfo.LookupPassword("admin"))
 	s.rtspListen, err = s.setupOurSocket(portNum)
 	if err == nil {
 		s.startMonitor()

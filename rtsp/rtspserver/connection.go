@@ -205,7 +205,7 @@ func (c *RTSPClientConnection) handleCommandDescribe(urlPreSuffix, urlSuffix, fu
 		urlTotalSuffix = fmt.Sprintf("%s/%s", urlPreSuffix, urlSuffix)
 	}
 
-	if ok := c.authenticationOK("DESCRIPE", urlTotalSuffix, fullRequestStr); !ok {
+	if ok := c.authenticationOK("DESCRIBE", urlTotalSuffix, fullRequestStr); !ok {
 		return
 	}
 
@@ -320,7 +320,7 @@ func (c *RTSPClientConnection) authenticationOK(cmdName, urlSuffix, fullRequestS
 
 		// Next, the username has to be known to us:
 		c.digest.Password = authDatabase.LookupPassword(header.Username)
-		log.Info("Received header.Username = [%s] c.digest.Password == [%s].", header.Username,c.digest.Password)
+		//log.Info("Received header.Username = [%s] c.digest.Password == [%s].", header.Username,c.digest.Password)
 		if c.digest.Password == "" {
 			break
 		}
@@ -329,7 +329,7 @@ func (c *RTSPClientConnection) authenticationOK(cmdName, urlSuffix, fullRequestS
 		// Finally, compute a digest response from the information that we have,
 		// and compare it to the one that we were given:
 		response := c.digest.ComputeResponse(cmdName, header.URI)
-		log.Info("response == [%s],header.Response == [%s]",response,header.Response)
+		//log.Info("response == [%s],header.Response == [%s]",response,header.Response)
 		if response == header.Response {
 			return true
 		}
