@@ -86,7 +86,7 @@ func ParseAuthorizationHeader(buf string) *AuthorizationHeader {
 	}
 
 	var username, realm, nonce, uri, response string
-
+	log.Info("buf=%s",buf)
 	r,err := regexp.Compile(`username="(?s:(.*?))"`)
 	if err != nil{
 		text :=r.FindAllStringSubmatch(buf, -1)
