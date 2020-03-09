@@ -15,6 +15,7 @@ func NewAuthDatabase(realm string) *Database {
 	}
 	return &Database{
 		Realm: realm,
+		records:make(map[string]string),
 	}
 }
 
