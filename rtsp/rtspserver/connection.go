@@ -320,7 +320,7 @@ func (c *RTSPClientConnection) authenticationOK(cmdName, urlSuffix, fullRequestS
 
 		// Next, the username has to be known to us:
 		c.digest.Password = authDatabase.LookupPassword()
-		log.Info("Received header.Username = [%s] c.digest.Password == %s.", header.Username,c.digest.Password)
+		log.Info("Received header.Username = [%s] c.digest.Password == [%s].", header.Username,c.digest.Password)
 		if c.digest.Password == "" {
 			break
 		}
