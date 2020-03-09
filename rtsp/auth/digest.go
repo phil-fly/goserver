@@ -86,36 +86,34 @@ func ParseAuthorizationHeader(buf string) *AuthorizationHeader {
 	}
 
 	var username, realm, nonce, uri, response string
-	log.Info("buf=%s",buf)
-	r,err := regexp.Compile(`username="(?s:(.*?))"`)
-	if err != nil{
-		text :=r.FindAllStringSubmatch(buf, -1)
+	r := regexp.MustCompile(`username="(?s:(.*?))"`)
+	text :=r.FindAllStringSubmatch(buf, -1)
+	if text != nil {
 		username = text[0][1]
 	}
 
-
-	r,err = regexp.Compile(`realm="(?s:(.*?))"`)
-	if err != nil{
-		text :=r.FindAllStringSubmatch(buf, -1)
+	r = regexp.MustCompile(`realm="(?s:(.*?))"`)
+	text =r.FindAllStringSubmatch(buf, -1)
+	if text != nil {
 		realm = text[0][1]
 	}
 
-	r,_ = regexp.Compile(`nonce="(?s:(.*?))"`)
-	if err != nil{
-		text :=r.FindAllStringSubmatch(buf, -1)
+	r = regexp.MustCompile(`nonce="(?s:(.*?))"`)
+	text =r.FindAllStringSubmatch(buf, -1)
+	if text != nil {
 		nonce = text[0][1]
 	}
-	r,err = regexp.Compile(`uri="(?s:(.*?))"`)
-	if err != nil{
-		text :=r.FindAllStringSubmatch(buf, -1)
+	r = regexp.MustCompile(`uri="(?s:(.*?))"`)
+	text =r.FindAllStringSubmatch(buf, -1)
+	if text != nil {
 		uri = text[0][1]
 	}
-
-	r,err = regexp.Compile(`response="(?s:(.*?))"`)
-	if err != nil{
-		text :=r.FindAllStringSubmatch(buf, -1)
+	r = regexp.MustCompile(`response="(?s:(.*?))"`)
+	text =r.FindAllStringSubmatch(buf, -1)
+	if text != nil {
 		response = text[0][1]
 	}
+	
 	log.Info("username=[%s],URI=[%s],Realm=[%s],Nonce=[%s],Response=[%s]",username,uri,realm,nonce,response)
 	return &AuthorizationHeader{
 		URI:      uri,
