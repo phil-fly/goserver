@@ -81,35 +81,36 @@ func ParseAuthorizationHeader(buf string) *AuthorizationHeader {
 		return nil
 	}
 
-	// Then, run through each of the fields, looking for ones we handle:
-	var n1, n2 int
-	var parameter, value, username, realm, nonce, uri, response string
-	fields := buf[index+len("Authorization: Digest"):]
-	for {
-		n1, _ = fmt.Sscanf(fields, "%[^=]=\"%[^\"]\"", &parameter, &value)
-		n2, _ = fmt.Sscanf(fields, "%[^=]=\"\"", &parameter)
-		if n1 != 2 && n2 != 1 {
-			break
-		}
-		fmt.Print("parameter ======",parameter,"            value =",value)
-		if strings.EqualFold(parameter, "username") {
-			username = value
-		} else if strings.EqualFold(parameter, "realm") {
-			realm = value
-		} else if strings.EqualFold(parameter, "nonce") {
-			nonce = value
-		} else if strings.EqualFold(parameter, "uri") {
-			uri = value
-		} else if strings.EqualFold(parameter, "response") {
-			response = value
-		}
-		fields = fields[len(parameter)+2+len(value)+1:]
-		for fields[0] == ' ' || fields[0] == ',' {
-			fields = fields[1:]
-		}
-		if fields == "" || fields[0] == '\r' || fields[0] == '\n' {
-			break
-		}
+	var username, realm, nonce, uri, response string
+
+	r,err := regexp.Compile(`username="(?s:(.*?))"`)
+	if err != nil{
+		text :=r.FindAllStringSubmatch(buf, -1)
+		username = text[0][1]
+	}
+
+
+	r,err = regexp.Compile(`realm="(?s:(.*?))"`)
+	if err != nil{
+		text :=r.FindAllStringSubmatch(buf, -1)
+		realm = text[0][1]
+	}
+
+	r,_ = regexp.Compile(`nonce="(?s:(.*?))"`)
+	if err != nil{
+		text :=r.FindAllStringSubmatch(buf, -1)
+		nonce = text[0][1]
+	}
+	r,err = regexp.Compile(`uri="(?s:(.*?))"`)
+	if err != nil{
+		text :=r.FindAllStringSubmatch(buf, -1)
+		uri = text[0][1]
+	}
+
+	r,err = regexp.Compile(`response="(?s:(.*?))"`)
+	if err != nil{
+		text :=r.FindAllStringSubmatch(buf, -1)
+		response = text[0][1]
 	}
 
 	return &AuthorizationHeader{
