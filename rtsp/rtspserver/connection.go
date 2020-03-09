@@ -31,7 +31,7 @@ type RTSPClientConnection struct {
 func newRTSPClientConnection(server *RTSPServer, socket net.Conn) *RTSPClientConnection {
 	localAddr := strings.Split(socket.LocalAddr().String(), ":")
 	remoteAddr := strings.Split(socket.RemoteAddr().String(), ":")
-	log.Info("[src=%s port=%s Connect.",remoteAddr[0],remoteAddr[1])
+	log.Info("src=%s port=%s Connect.",remoteAddr[0],remoteAddr[1])
 	return &RTSPClientConnection{
 		server:     server,
 		socket:     socket,
@@ -329,6 +329,7 @@ func (c *RTSPClientConnection) authenticationOK(cmdName, urlSuffix, fullRequestS
 		// Finally, compute a digest response from the information that we have,
 		// and compare it to the one that we were given:
 		response := c.digest.ComputeResponse(cmdName, header.URI)
+		log.Info("response == [%s],header.Response == [%s]",response,header.Response)
 		if response == header.Response {
 			return true
 		}
