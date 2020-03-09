@@ -74,12 +74,14 @@ type AuthorizationHeader struct {
 // Authorization Header contains uri, realm, nonce, Username, response fields
 func ParseAuthorizationHeader(buf string) *AuthorizationHeader {
 	if buf == "" {
+		log.Warn("ParseAuthorizationHeader input buf is nil")
 		return nil
 	}
 
 	// First, find "Authorization:"
 	index := strings.Index(buf, "Authorization: Digest")
 	if -1 == index {
+		log.Warn("ParseAuthorizationHeader not found Authorization: Digest")
 		return nil
 	}
 
