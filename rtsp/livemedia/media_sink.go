@@ -6,7 +6,7 @@ import (
 	"net"
 	sys "syscall"
 
-	"github.com/phil-fly/goserver/rtsp/log"
+	"github.com/phil-fly/log"
 )
 
 // default

@@ -4,7 +4,7 @@ import (
 	sys "syscall"
 
 	gs "github.com/phil-fly/goserver/rtsp/groupsock"
-	"github.com/phil-fly/goserver/rtsp/log"
+	"github.com/phil-fly/log"
 )
 
 const (
